@@ -57,9 +57,6 @@ Thumbs.db
 *.crt
 *.pem
 
-# Text files
-*.md
-
 # Others
 *.env
 coverage
