@@ -9,13 +9,20 @@ if (!BOT_TOKEN || !CHAT_ID) {
   throw new Error('Please configure environment variables!');
 }
 
-const [dolar, buenbit, lemon] = await Promise.all([
+const [dolar, buenbit, lemon, belo] = await Promise.all([
   axios.get('https://criptoya.com/api/dolar').then((r) => r.data),
   axios.get('https://criptoya.com/api/buenbit/usdt/ars/0.1').then((r) => r.data),
   axios.get('https://criptoya.com/api/lemoncash/usdt/ars/0.1').then((r) => r.data),
+  axios.get('https://criptoya.com/api/belo/usdt/ars/0.1').then((r) => r.data),
 ]);
 
-const message = `🤑 <b>USDT - BuenBit</b> 🤑
+const date = new Date();
+
+const message = `Cotizaciones al <b>${date.toLocaleString('es-ES', {
+  timeZone: 'America/Buenos_Aires',
+})}</b>
+
+🤑 <b>USDT - BuenBit</b> 🤑
 Compra: ${buenbit.ask}
 Venta: ${buenbit.bid}
 
@@ -23,24 +30,27 @@ Venta: ${buenbit.bid}
 Compra: ${lemon.ask}
 Venta: ${lemon.bid}
 
+🤑 <b>USDT - Belo</b> 🤑
+Compra: ${belo.ask}
+Venta: ${belo.bid}
+
 💵 <b>BLUE</b> 💵
-Compra: ${dolar.blue}
-Venta: ${dolar.blue_bid}
+Compra: ${dolar.blue.ask}
+Venta: ${dolar.blue.bid}
 
 💵 <b>MEP</b> 💵
-${dolar.mep}
-
-💵 <b>SOLIDARIO</b> 💵
-${dolar.solidario}
+AL30: ${dolar.mep['al30']['48hs'].price}
+GD30: ${dolar.mep['gd30']['48hs'].price}
 
 💵 <b>CCL</b> 💵
-${dolar.ccl}
+AL30: ${dolar.ccl['al30']['48hs'].price}
+GD30: ${dolar.ccl['gd30']['48hs'].price}
 
-💵 <b>QATAR</b> 💵
-${dolar.qatar}
+💵 <b>TARJETA</b> 💵
+${dolar.tarjeta.price}
 
 💵 <b>OFICIAL</b> 💵
-${dolar.oficial}`;
+${dolar.oficial.price}`;
 
 const bot = new Bot(BOT_TOKEN);
 
