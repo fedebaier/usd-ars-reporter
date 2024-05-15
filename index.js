@@ -9,11 +9,12 @@ if (!BOT_TOKEN || !CHAT_ID) {
   throw new Error('Please configure environment variables!');
 }
 
-const [dolar, buenbit, lemon, belo] = await Promise.all([
+const [dolar, buenbit, lemon, belo, letsbit] = await Promise.all([
   axios.get('https://criptoya.com/api/dolar').then((r) => r.data),
   axios.get('https://criptoya.com/api/buenbit/usdt/ars/0.1').then((r) => r.data),
   axios.get('https://criptoya.com/api/lemoncash/usdt/ars/0.1').then((r) => r.data),
   axios.get('https://criptoya.com/api/belo/usdt/ars/0.1').then((r) => r.data),
+  axios.get('https://criptoya.com/api/letsbit/usdt/ars/0.1').then((r) => r.data),
 ]);
 
 const date = new Date();
@@ -33,6 +34,10 @@ Venta: ${lemon.bid}
 🤑 <b>USDT - Belo</b> 🤑
 Compra: ${belo.ask}
 Venta: ${belo.bid}
+
+🤑 <b>USDT - Let'sBit</b> 🤑
+Compra: ${letsbit.ask}
+Venta: ${letsbit.bid}
 
 💵 <b>BLUE</b> 💵
 Compra: ${dolar.blue.ask}
