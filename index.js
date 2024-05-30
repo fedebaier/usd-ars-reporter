@@ -44,12 +44,12 @@ Compra: ${dolar.blue.ask}
 Venta: ${dolar.blue.bid}
 
 💵 <b>MEP</b> 💵
-AL30: ${dolar.mep['al30']['48hs'].price}
-GD30: ${dolar.mep['gd30']['48hs'].price}
+AL30: ${dolar.mep['al30']['24hs'].price}
+GD30: ${dolar.mep['gd30']['24hs'].price}
 
 💵 <b>CCL</b> 💵
-AL30: ${dolar.ccl['al30']['48hs'].price}
-GD30: ${dolar.ccl['gd30']['48hs'].price}
+AL30: ${dolar.ccl['al30']['24hs'].price}
+GD30: ${dolar.ccl['gd30']['24hs'].price}
 
 💵 <b>TARJETA</b> 💵
 ${dolar.tarjeta.price}
