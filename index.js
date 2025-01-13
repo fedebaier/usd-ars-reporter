@@ -14,12 +14,13 @@ const date = new Date();
 let message = '';
 
 try {
-  const [dolar, buenbit, lemon, belo, letsbit] = await Promise.all([
+  const [dolar, buenbit, lemon, belo, letsbit, real] = await Promise.all([
     axios.get('https://criptoya.com/api/dolar').then((r) => r.data),
     axios.get('https://criptoya.com/api/buenbit/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/lemoncash/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/belo/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/letsbit/usdt/ars/0.1').then((r) => r.data),
+    axios.get('https://br.dolarapi.com/v1/cotacoes/usd').then((r) => r.data),
   ]);
 
   message = `Cotizaciones al <b>${date.toLocaleString('es-ES', {
@@ -58,7 +59,11 @@ try {
   ${dolar.tarjeta.price}
 
   💵 <b>OFICIAL</b> 💵
-  ${dolar.oficial.price}`;
+  ${dolar.oficial.price}
+
+  🇧🇷 <b>USD - REAL</b> 🇧🇷
+  Compra: ${real.compra}
+  Venta: ${real.venda}`;
 } catch (error) {
   message = `<b>Error</b>: ${JSON.stringify(error)}`;
 }
