@@ -14,12 +14,13 @@ const date = new Date();
 let message = '';
 
 try {
-  const [dolar, buenbit, lemon, belo, letsbit] = await Promise.all([
+  const [dolar, buenbit, lemon, belo, letsbit, binancep2p] = await Promise.all([
     axios.get('https://criptoya.com/api/dolar').then((r) => r.data),
     axios.get('https://criptoya.com/api/buenbit/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/lemoncash/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/belo/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/letsbit/usdt/ars/0.1').then((r) => r.data),
+    axios.get('https://criptoya.com/api/binancep2p/usdt/ars/0.1').then((r) => r.data),
   ]);
 
   message = `Cotizaciones al <b>${date.toLocaleString('es-ES', {
@@ -41,6 +42,10 @@ try {
   🤑 <b>USDT - Let'sBit</b> 🤑
   Compra: ${letsbit.ask}
   Venta: ${letsbit.bid}
+
+  🤑 <b>USDT - Binance P2P</b> 🤑
+  Compra: ${binancep2p.ask}
+  Venta: ${binancep2p.bid}
 
   💵 <b>BLUE</b> 💵
   Compra: ${dolar.blue.ask}
