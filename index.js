@@ -14,10 +14,9 @@ const date = new Date();
 let message = '';
 
 try {
-  const [dolar, buenbit, lemon, belo, letsbit, binancep2p, ripio] = await Promise.all([
+  const [dolar, buenbit, belo, letsbit, binancep2p, ripio] = await Promise.all([
     axios.get('https://criptoya.com/api/dolar').then((r) => r.data),
     axios.get('https://criptoya.com/api/buenbit/usdt/ars/0.1').then((r) => r.data),
-    axios.get('https://criptoya.com/api/lemoncash/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/belo/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/letsbit/usdt/ars/0.1').then((r) => r.data),
     axios.get('https://criptoya.com/api/binancep2p/usdt/ars/0.1').then((r) => r.data),
@@ -31,10 +30,6 @@ try {
   🤑 <b>USDT - BuenBit</b> 🤑
   Compra: ${buenbit.ask}
   Venta: ${buenbit.bid}
-
-  🤑 <b>USDT - Lemon</b> 🤑
-  Compra: ${lemon.ask}
-  Venta: ${lemon.bid}
 
   🤑 <b>USDT - Belo</b> 🤑
   Compra: ${belo.ask}
